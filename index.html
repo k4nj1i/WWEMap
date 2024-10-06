@@ -6,28 +6,14 @@
     <title>Comprehensive WWE Venues Map (1990-2000)</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
     <style>
-        #map { height: 600px; width: 100%; }
-        .leaflet-popup-content {
-            max-height: 400px;
-            overflow-y: auto;
-            width: 400px !important;
-        }
-        .event-details {
-            margin-bottom: 15px;
-            border-bottom: 1px solid #ccc;
-            padding-bottom: 15px;
-        }
-        .event-title {
-            font-weight: bold;
-            font-size: 1.1em;
-        }
-        .event-info {
-            font-style: italic;
-            margin: 5px 0;
-        }
-        .match-list {
-            margin-left: 15px;
-        }
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        h1 { text-align: center; }
+        #map { height: 600px; width: 100%; margin-bottom: 20px; }
+        .leaflet-popup-content { max-height: 400px; overflow-y: auto; width: 400px !important; }
+        .event-details { margin-bottom: 15px; border-bottom: 1px solid #ccc; padding-bottom: 15px; }
+        .event-title { font-weight: bold; font-size: 1.1em; }
+        .event-info { font-style: italic; margin: 5px 0; }
+        .match-list { margin-left: 15px; }
     </style>
 </head>
 <body>
@@ -39,14 +25,11 @@
         const venues = [
             {
                 name: "Madison Square Garden, New York City, NY",
-                lat: 40.7505,
-                lon: -73.9934,
+                lat: 40.7505, lon: -73.9934,
                 events: [
                     {
-                        date: "1994-03-20",
-                        name: "WrestleMania X",
-                        attendance: "18,065",
-                        buyrate: "420,000",
+                        date: "1994-03-20", name: "WrestleMania X", type: "PPV",
+                        attendance: "18,065", buyrate: "420,000",
                         mainCard: [
                             "Bret Hart def. Yokozuna for WWF Championship",
                             "Razor Ramon def. Shawn Michaels in a Ladder match for IC Championship",
@@ -57,60 +40,104 @@
                         notes: "First WrestleMania to feature two WWF Championship matches. The Ladder match between Ramon and Michaels is considered one of the greatest matches in WWE history."
                     },
                     {
-                        date: "1998-08-30",
-                        name: "SummerSlam 1998",
-                        attendance: "21,588",
-                        buyrate: "700,000",
+                        date: "1993-01-11", name: "Monday Night Raw Debut", type: "RAW",
+                        attendance: "3,000",
                         mainCard: [
-                            "Stone Cold Steve Austin def. Undertaker for WWF Championship",
-                            "Triple H def. The Rock in a Ladder match for IC Championship",
-                            "X-Pac def. Jeff Jarrett",
-                            "D-Generation X (New Age Outlaws & X-Pac) def. Nation of Domination (Owen Hart, Kama Mustafa & D'Lo Brown)",
-                            "Val Venis def. D'Lo Brown for European Championship"
+                            "Yokozuna def. Koko B. Ware",
+                            "The Steiner Brothers def. The Executioners",
+                            "Shawn Michaels def. Max Moon for the IC Championship"
                         ],
-                        notes: "This event marked the height of the 'Attitude Era'. The main event between Austin and Undertaker was highly anticipated, with both men at the peak of their popularity."
+                        notes: "This was the very first episode of Monday Night Raw, marking a new era in WWE programming."
                     }
                 ]
             },
             {
-                name: "Miami Arena, Miami, FL",
-                lat: 25.7814,
-                lon: -80.1870,
+                name: "Arrowhead Pond of Anaheim, Anaheim, CA",
+                lat: 33.8078, lon: -117.8765,
                 events: [
                     {
-                        date: "1991-01-19",
-                        name: "Royal Rumble 1991",
-                        attendance: "15,000",
-                        buyrate: "440,000",
+                        date: "1996-03-31", name: "WrestleMania XII", type: "PPV",
+                        attendance: "18,853", buyrate: "290,000",
                         mainCard: [
-                            "Hulk Hogan won the Royal Rumble match",
-                            "The Ultimate Warrior def. Sgt. Slaughter for WWF Championship",
-                            "Ted DiBiase & Virgil def. Dusty Rhodes & Dustin Rhodes",
-                            "The Mountie def. Koko B. Ware",
-                            "The Orient Express def. The Rockers"
+                            "Shawn Michaels def. Bret Hart in a 60-minute Iron Man match for WWF Championship",
+                            "The Undertaker def. Diesel",
+                            "Roddy Piper def. Goldust in a Hollywood Backlot Brawl",
+                            "The Ultimate Warrior def. Hunter Hearst Helmsley",
+                            "Steve Austin def. Savio Vega"
                         ],
-                        notes: "This was the first Royal Rumble to have a significant impact on the WrestleMania main event. Hogan's win set up his match against Sgt. Slaughter at WrestleMania VII."
+                        notes: "Featured the famous 60-minute Iron Man match between Shawn Michaels and Bret Hart, which went into sudden death overtime."
                     }
                 ]
             },
             {
-                name: "Toronto SkyDome, Toronto, Ontario, Canada",
-                lat: 43.6414,
-                lon: -79.3894,
+                name: "Gund Arena (now Rocket Mortgage FieldHouse), Cleveland, OH",
+                lat: 41.4965, lon: -81.6882,
                 events: [
                     {
-                        date: "1990-04-01",
-                        name: "WrestleMania VI",
-                        attendance: "67,678",
-                        buyrate: "550,000",
+                        date: "1996-08-18", name: "SummerSlam 1996", type: "PPV",
+                        attendance: "17,000", buyrate: "157,000",
                         mainCard: [
-                            "The Ultimate Warrior def. Hulk Hogan for both IC and WWF Championships",
-                            "Rick Rude def. Jimmy Snuka",
-                            "Roddy Piper vs. Bad News Brown ended in a double countout",
-                            "The Hart Foundation def. The Bolsheviks",
-                            "Brutus Beefcake def. Mr. Perfect"
+                            "Shawn Michaels def. Vader for WWF Championship",
+                            "The Undertaker def. Mankind in a Boiler Room Brawl",
+                            "Owen Hart & British Bulldog def. Razor Ramon & Diesel",
+                            "Stone Cold Steve Austin def. Yokozuna",
+                            "Sycho Sid def. British Bulldog"
                         ],
-                        notes: "This event is famous for the 'Ultimate Challenge' where both the WWF and Intercontinental Championships were on the line in the main event. It was also the first WrestleMania held outside the United States."
+                        notes: "This event saw the continuation of the intense feud between The Undertaker and Mankind, featuring their famous Boiler Room Brawl match."
+                    }
+                ]
+            },
+            {
+                name: "Rosemont Horizon (now Allstate Arena), Rosemont, IL",
+                lat: 42.0060, lon: -87.8878,
+                events: [
+                    {
+                        date: "1997-03-23", name: "WrestleMania 13", type: "PPV",
+                        attendance: "18,197", buyrate: "237,000",
+                        mainCard: [
+                            "The Undertaker def. Sycho Sid for WWF Championship",
+                            "Stone Cold Steve Austin def. Bret Hart in a Submission match with Ken Shamrock as special guest referee",
+                            "Rocky Maivia def. The Sultan for IC Championship",
+                            "Legion of Doom and Ahmed Johnson def. Nation of Domination in a Chicago Street Fight",
+                            "Hunter Hearst Helmsley def. Goldust"
+                        ],
+                        notes: "This event is famous for the Stone Cold Steve Austin vs. Bret Hart submission match, which is credited with kick-starting the 'Attitude Era'."
+                    }
+                ]
+            },
+            {
+                name: "Kemper Arena, Kansas City, MO",
+                lat: 39.0915, lon: -94.5837,
+                events: [
+                    {
+                        date: "1999-05-23", name: "Over the Edge 1999", type: "PPV",
+                        attendance: "16,472", buyrate: "330,000",
+                        mainCard: [
+                            "The Undertaker def. Stone Cold Steve Austin for WWF Championship",
+                            "The Rock def. Triple H in a SinglesAcker match",
+                            "X-Pac def. Kane",
+                            "Mr. Ass def. Road Dogg",
+                            "Hardcore Holly def. Al Snow & Thrasher in a Hardcore match for WWF Hardcore Championship"
+                        ],
+                        notes: "This event is sadly remembered for the tragic accident involving Owen Hart."
+                    }
+                ]
+            },
+            {
+                name: "First Union Center (now Wells Fargo Center), Philadelphia, PA",
+                lat: 39.9012, lon: -75.1720,
+                events: [
+                    {
+                        date: "1999-03-28", name: "WrestleMania XV", type: "PPV",
+                        attendance: "20,276", buyrate: "800,000",
+                        mainCard: [
+                            "Stone Cold Steve Austin def. The Rock for WWF Championship",
+                            "The Undertaker def. Big Boss Man in a Hell in a Cell match",
+                            "Mankind def. Big Show",
+                            "Kane def. Triple H",
+                            "Road Dogg def. Val Venis, Goldust & Ken Shamrock for IC Championship"
+                        ],
+                        notes: "This event marked the first WrestleMania main event between Stone Cold Steve Austin and The Rock, starting their iconic rivalry."
                     }
                 ]
             }
@@ -127,9 +154,9 @@
             venue.events.forEach(event => {
                 popupContent += `
                     <div class="event-details">
-                        <div class="event-title">${event.date} - ${event.name}</div>
+                        <div class="event-title">${event.date} - ${event.name} (${event.type})</div>
                         <div class="event-info">Attendance: ${event.attendance}</div>
-                        <div class="event-info">Pay-per-view Buyrate: ${event.buyrate}</div>
+                        ${event.buyrate ? `<div class="event-info">Pay-per-view Buyrate: ${event.buyrate}</div>` : ''}
                         <div><strong>Main Card:</strong></div>
                         <ul class="match-list">
                             ${event.mainCard.map(match => `<li>${match}</li>`).join('')}
@@ -139,9 +166,7 @@
                 `;
             });
 
-            L.marker([venue.lat, venue.lon])
-                .addTo(map)
-                .bindPopup(popupContent);
+            L.marker([venue.lat, venue.lon]).addTo(map).bindPopup(popupContent);
         });
     </script>
 </body>
