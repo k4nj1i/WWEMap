@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive WWE Venues Map (1990-2000)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+    <style>
+        #map { height: 600px; width: 100%; }
+        .leaflet-popup-content {
+            max-height: 400px;
+            overflow-y: auto;
+            width: 400px !important;
+        }
+        .event-details {
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 15px;
+        }
+        .event-title {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .event-info {
+            font-style: italic;
+            margin: 5px 0;
+        }
+        .match-list {
+            margin-left: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Comprehensive WWE Venues Map (1990-2000)</h1>
+    <div id="map"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <script>
+        const venues = [
+            {
+                name: "Madison Square Garden, New York City, NY",
+                lat: 40.7505,
+                lon: -73.9934,
+                events: [
+                    {
+                        date: "1994-03-20",
+                        name: "WrestleMania X",
+                        attendance: "18,065",
+                        buyrate: "420,000",
+                        mainCard: [
+                            "Bret Hart def. Yokozuna for WWF Championship",
+                            "Razor Ramon def. Shawn Michaels in a Ladder match for IC Championship",
+                            "Owen Hart def. Bret Hart",
+                            "Randy Savage def. Crush in a Falls Count Anywhere match",
+                            "Yokozuna def. Lex Luger for WWF Championship"
+                        ],
+                        notes: "First WrestleMania to feature two WWF Championship matches. The Ladder match between Ramon and Michaels is considered one of the greatest matches in WWE history."
+                    },
+                    {
+                        date: "1998-08-30",
+                        name: "SummerSlam 1998",
+                        attendance: "21,588",
+                        buyrate: "700,000",
+                        mainCard: [
+                            "Stone Cold Steve Austin def. Undertaker for WWF Championship",
+                            "Triple H def. The Rock in a Ladder match for IC Championship",
+                            "X-Pac def. Jeff Jarrett",
+                            "D-Generation X (New Age Outlaws & X-Pac) def. Nation of Domination (Owen Hart, Kama Mustafa & D'Lo Brown)",
+                            "Val Venis def. D'Lo Brown for European Championship"
+                        ],
+                        notes: "This event marked the height of the 'Attitude Era'. The main event between Austin and Undertaker was highly anticipated, with both men at the peak of their popularity."
+                    }
+                ]
+            },
+            {
+                name: "Miami Arena, Miami, FL",
+                lat: 25.7814,
+                lon: -80.1870,
+                events: [
+                    {
+                        date: "1991-01-19",
+                        name: "Royal Rumble 1991",
+                        attendance: "15,000",
+                        buyrate: "440,000",
+                        mainCard: [
+                            "Hulk Hogan won the Royal Rumble match",
+                            "The Ultimate Warrior def. Sgt. Slaughter for WWF Championship",
+                            "Ted DiBiase & Virgil def. Dusty Rhodes & Dustin Rhodes",
+                            "The Mountie def. Koko B. Ware",
+                            "The Orient Express def. The Rockers"
+                        ],
+                        notes: "This was the first Royal Rumble to have a significant impact on the WrestleMania main event. Hogan's win set up his match against Sgt. Slaughter at WrestleMania VII."
+                    }
+                ]
+            },
+            {
+                name: "Toronto SkyDome, Toronto, Ontario, Canada",
+                lat: 43.6414,
+                lon: -79.3894,
+                events: [
+                    {
+                        date: "1990-04-01",
+                        name: "WrestleMania VI",
+                        attendance: "67,678",
+                        buyrate: "550,000",
+                        mainCard: [
+                            "The Ultimate Warrior def. Hulk Hogan for both IC and WWF Championships",
+                            "Rick Rude def. Jimmy Snuka",
+                            "Roddy Piper vs. Bad News Brown ended in a double countout",
+                            "The Hart Foundation def. The Bolsheviks",
+                            "Brutus Beefcake def. Mr. Perfect"
+                        ],
+                        notes: "This event is famous for the 'Ultimate Challenge' where both the WWF and Intercontinental Championships were on the line in the main event. It was also the first WrestleMania held outside the United States."
+                    }
+                ]
+            }
+        ];
+
+        const map = L.map('map').setView([39.8283, -98.5795], 4);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        venues.forEach(venue => {
+            let popupContent = `<h2>${venue.name}</h2>`;
+            venue.events.forEach(event => {
+                popupContent += `
+                    <div class="event-details">
+                        <div class="event-title">${event.date} - ${event.name}</div>
+                        <div class="event-info">Attendance: ${event.attendance}</div>
+                        <div class="event-info">Pay-per-view Buyrate: ${event.buyrate}</div>
+                        <div><strong>Main Card:</strong></div>
+                        <ul class="match-list">
+                            ${event.mainCard.map(match => `<li>${match}</li>`).join('')}
+                        </ul>
+                        <div><strong>Notes:</strong> ${event.notes}</div>
+                    </div>
+                `;
+            });
+
+            L.marker([venue.lat, venue.lon])
+                .addTo(map)
+                .bindPopup(popupContent);
+        });
+    </script>
+</body>
+</html>
